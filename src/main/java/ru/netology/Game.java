@@ -1,26 +1,26 @@
 package ru.netology;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
-  protected List<Player> players = new ArrayList<>();
+  protected Map<String, Integer> players = new HashMap<>();
 
   public void register(Player player) {
-    players.add(player);
+    players.put(player.name, player.strength);
   }
 
   public int round(String playerName1, String playerName2) {
-    Player player1 = null;
-    Player player2 = null;
+    String player1 = null;
+    String player2 = null;
 
-    for (Player player : players) {
-      if (player.getName().equals(playerName1)) {
-        player1 = player;
+    for (String ignored : players.keySet()) {
+      if (players.containsKey(playerName1)) {
+        player1 = playerName1;
       }
-      if (player.getName().equals(playerName2)) {
-        player2 = player;
+      if (players.containsKey(playerName2)) {
+        player2 = playerName2;
       }
     }
     if (player1 == null) {
@@ -35,18 +35,18 @@ public class Game {
       );
     }
 
-    if (player1.getStrength() == player2.getStrength()) {
+    if (players.get(player1).intValue() == players.get(player2).intValue()) {
       return 0;
     }
 
-    if (player1.getStrength() > player2.getStrength()) {
+    if (players.get(player1) > players.get(player2)) {
       return 1;
     } else {
       return 2;
     }
   }
 
-  public List<Player> getAllPlayers() {
+  public Map<String, Integer> getAllPlayers() {
     return players;
   }
 }
