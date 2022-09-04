@@ -3,16 +3,16 @@ package ru.netology;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameTest {
-  Player player1 = new Player(1, "Vasya", 100);
-  Player player2 = new Player(2, "Kolya", 50);
-  Player player3 = new Player(3, "Kostya", 75);
-  Player player4 = new Player(4, "Olya", 50);
-  Player player5 = new Player(5, "Vanya", 75);
-  Player player6 = new Player(6, "Nastya", 25);
+  Player player1 = new Player("Vasya", 100);
+  Player player2 = new Player("Kolya", 50);
+  Player player3 = new Player("Kostya", 75);
+  Player player4 = new Player( "Olya", 50);
+  Player player5 = new Player("Vanya", 75);
+  Player player6 = new Player("Nastya", 25);
 
   @Test
   public void testAddPlayer() {
@@ -24,14 +24,14 @@ public class GameTest {
     game.register(player5);
     game.register(player6);
 
-    List<Player> actual = game.getAllPlayers();
-    List<Player> expected = new ArrayList<>();
-    expected.add(player1);
-    expected.add(player2);
-    expected.add(player3);
-    expected.add(player4);
-    expected.add(player5);
-    expected.add(player6);
+    Map<String, Integer> actual = game.getAllPlayers();
+    Map<String, Integer> expected = new HashMap<>();
+    expected.put("Vasya",100);
+    expected.put("Kolya", 50);
+    expected.put("Kostya", 75);
+    expected.put("Olya", 50);
+    expected.put("Vanya", 75);
+    expected.put("Nastya", 25);
 
     Assertions.assertEquals(expected, actual);
   }
